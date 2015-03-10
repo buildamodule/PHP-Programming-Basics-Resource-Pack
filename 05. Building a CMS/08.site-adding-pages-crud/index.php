@@ -48,7 +48,9 @@ $notices = get_notices();
 // Get admin.css if it's an admin page.
 $additional_css_files = '';
 if (isset($_GET['path'])) {
-  if (array_shift(explode('/', $_GET['path'])) == 'admin') {
+  // Adding update here, array_shift() requires a variable that can be passed by reference.
+  $path = $_GET['path'];
+  if (array_shift(explode('/', $path)) == 'admin') {
     $additional_css_files .= '<link type="text/css" rel="stylesheet" media="all" href="' . url('styles/admin.css') . '" />';
   }
 }
